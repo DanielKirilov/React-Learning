@@ -3,12 +3,21 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  let numbers = [1, 2, 3, 4, 5];
-  let doubledNumbers = numbers.map(e => <li key={e} >{e * 2}</li>)
+
+  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5])
+
+  function onDelete() {
+    setNumbers(oldState => oldState.slice(1))
+  }
 
   return (
     <>
-      {doubledNumbers}
+      <div>
+        <ul>
+          {numbers.map((number, index) => <li key={index}>{number}</li>)}
+        </ul>
+      </div>
+      <button onClick={onDelete}>Delete</button>
     </>
   )
 }
