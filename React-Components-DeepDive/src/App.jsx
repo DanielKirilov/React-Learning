@@ -11,9 +11,16 @@ function App() {
   }
 
   useEffect(() => {
-    
-    
-  })
+    console.log("Mount component");
+  }, []);
+
+  useEffect(() => {
+    console.log("Update component");
+  }, [numbers]);
+
+  if (!numbers.length) {
+    return null
+  }
 
   return (
     <>
