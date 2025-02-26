@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, use } from 'react'
 
 import './App.css'
 
@@ -7,8 +7,13 @@ function App() {
   const [numbers, setNumbers] = useState([1, 2, 3, 4, 5])
 
   function onDelete() {
-    setNumbers(oldState => oldState.slice(1))
+    setNumbers(oldState => oldState.slice(0, oldState.length - 1))
   }
+
+  useEffect(() => {
+    
+    
+  })
 
   return (
     <>
