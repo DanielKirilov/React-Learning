@@ -4,4 +4,6 @@
 
 .listItem {
     list-style: square;
+    padding: 5px;
+    background-color: aquamarine;
 }
