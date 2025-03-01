@@ -1,4 +1,5 @@
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect } from 'react'
+import styles from './App.module.css';
 
 import './App.css'
 
@@ -53,7 +54,13 @@ function App() {
         <button onClick={onNull}>Reset</button>
         <button onClick={onAdd}>+</button>
         <ul>
-          {numbers.map((number, index) => <li key={index}>{number}</li>)}
+          {numbers.map((number, index) =>
+            <li
+              key={index}
+              className={styles.listItem}
+            >
+              {number}
+            </li>)}
         </ul>
       </div>
       <button onClick={onDelete}>Delete</button>
