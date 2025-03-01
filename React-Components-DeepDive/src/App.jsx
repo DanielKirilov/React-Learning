@@ -50,9 +50,9 @@ function App() {
     <>
       <div>
         <h2>Count : {count}</h2>
-        <button onClick={onMinus}>-</button>
+        <button style={{ marginRight: "10px" }} onClick={onMinus}>-</button>
         <button onClick={onNull}>Reset</button>
-        <button onClick={onAdd}>+</button>
+        <button style={{ marginLeft: "10px" }} onClick={onAdd}>+</button>
         <ul>
           {numbers.map((number, index) =>
             <li

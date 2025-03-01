@@ -6,4 +6,10 @@
     list-style: square;
     padding: 5px;
     background-color: aquamarine;
+    margin-top: 5px;
+}
+
+.listItem:hover {
+    background-color: lightblue;
+    cursor: pointer;
 }
