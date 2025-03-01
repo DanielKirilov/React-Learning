@@ -38,9 +38,9 @@ function App() {
   }, [numbers]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTime(time => time + 1);
-    }, 1000);
+    // setTimeout(() => {
+    //   setTime(time => time + 1);
+    // }, 1000);
   }, [time]);
 
   if (!numbers.length) {

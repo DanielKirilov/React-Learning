@@ -2,7 +2,6 @@ import { use, useEffect, useState } from "react"
 
 export default function Starwars() {
     const [characters, setCharacters] = useState([])
-console.log(characters);
 
     useEffect(() => {
         fetch("https://swapi.dev/api/people")
@@ -15,6 +14,18 @@ console.log(characters);
     }, [])
 
     return (
-        <h1>Starwars characters</h1>
+        <div>
+            <h1>Starwars characters</h1>
+
+            <ul>
+                {characters.map(character => <li
+                    key={character.name}
+                >
+                    {`${character.name}
+                    ${character.height}`}
+                </li>)}
+            </ul>
+
+        </div>
     )
 }
