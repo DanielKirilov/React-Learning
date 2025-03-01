@@ -5,8 +5,8 @@ import './App.css'
 function App() {
 
   const [numbers, setNumbers] = useState([1, 2, 3, 4, 5])
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  const [time, setTime] = useState(0);
 
   function onDelete() {
     setNumbers(oldState => oldState.slice(0, oldState.length - 1))
@@ -14,7 +14,7 @@ function App() {
   function onAdd() {
     setCount(setCount => setCount + 1);
   }
-  
+
   useEffect(() => {
     console.log("count");
   }, [count]);
@@ -26,6 +26,12 @@ function App() {
   useEffect(() => {
     console.log("Update component");
   }, [numbers]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTime(time => time + 1);
+    }, 1000);
+  }, [time]);
 
   if (!numbers.length) {
     return null
@@ -41,6 +47,7 @@ function App() {
         </ul>
       </div>
       <button onClick={onDelete}>Delete</button>
+      <p>Timer : {time}</p>
     </>
   )
 }
