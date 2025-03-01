@@ -19,7 +19,7 @@ export default function Starwars() {
 
             <ul>
                 {characters.map(character => <li
-                    key={character.name}
+                    key={character.url}
                 >
                     {`${character.name}
                     ${character.height}`}
