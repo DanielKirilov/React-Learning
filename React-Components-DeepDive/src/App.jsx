@@ -15,6 +15,14 @@ function App() {
     setCount(setCount => setCount + 1);
   }
 
+  function onMinus() {
+    setCount(setCount => setCount - 1);
+  }
+
+  function onNull() {
+    setCount(0);
+  }
+
   useEffect(() => {
     console.log("count");
   }, [count]);
@@ -41,6 +49,8 @@ function App() {
     <>
       <div>
         <h2>Count : {count}</h2>
+        <button onClick={onMinus}>-</button>
+        <button onClick={onNull}>Reset</button>
         <button onClick={onAdd}>+</button>
         <ul>
           {numbers.map((number, index) => <li key={index}>{number}</li>)}
