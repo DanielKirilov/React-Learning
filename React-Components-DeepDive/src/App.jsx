@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import styles from './App.module.css';
 
 import './App.css'
+import Starwars from './StarWars';
 
 function App() {
 
@@ -25,15 +26,15 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("count");
+    //console.log("count");
   }, [count]);
 
   useEffect(() => {
-    console.log("Mount component");
+    //console.log("Mount component");
   }, []);
 
   useEffect(() => {
-    console.log("Update component");
+    //console.log("Update component");
   }, [numbers]);
 
   useEffect(() => {
@@ -49,6 +50,9 @@ function App() {
   return (
     <>
       <div>
+
+        <Starwars />
+
         <h2>Count : {count}</h2>
         <button style={{ marginRight: "10px" }} onClick={onMinus}>-</button>
         <button onClick={onNull}>Reset</button>
