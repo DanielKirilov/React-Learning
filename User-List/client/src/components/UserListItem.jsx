@@ -1,3 +1,5 @@
+import { formatDateTime } from "../utils/dateUtils";
+
 export default function UserListItem({ _id, firstName, lastName, email, phoneNumber, createdAt, imageUrl }) {
     return (
         <tr>
@@ -9,7 +11,7 @@ export default function UserListItem({ _id, firstName, lastName, email, phoneNum
             <td>{lastName}</td>
             <td>{email}</td>
             <td>{phoneNumber}</td>
-            <td>{createdAt}</td>
+            <td>{formatDateTime(createdAt)}</td>
 
             <td className="actions">
                 <button className="btn edit-btn" title="Edit">

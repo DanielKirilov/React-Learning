@@ -1,17 +1,29 @@
 import UserListItem from "./UserListItem"
+import CreateUserModal from "./CreateUserModal";
 import * as userService from "../services/userService";
 import { useEffect, useState } from "react";
 
 export default function UserListTable() {
     const [users, setUsers] = useState([]);
+    const [showCreate, setShowCreate] = useState(false)
 
     useEffect(() => {
         userService.getAll()
             .then(result => setUsers(result));
     }, [])
 
+    const createUserClickHandler = () => {
+        setShowCreate(true)
+    }
+
+    const closeUserModal = () => {
+        setShowCreate(false);
+    }
+
     return (
         <div className="table-wrapper">
+
+            {showCreate && <CreateUserModal closeUserModal={closeUserModal} />}
 
             <table className="table">
                 <thead>
@@ -83,6 +95,8 @@ export default function UserListTable() {
 
                 </tbody>
             </table>
+
+            <button onClick={createUserClickHandler} className="btn-add btn">Add new user</button>
         </div>
     )
 }
