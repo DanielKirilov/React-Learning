@@ -21,15 +21,21 @@ export default function UserListTable() {
     }
 
     const userCreateHandler = async (e) => {
+        //stop refreshing
         e.preventDefault();
 
+
+        //get data from form data
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
+        //create user at the server
         const newUser = await userService.create(data);
 
+        //add newUser to preexisting ones
         setUsers(state => [...state, newUser])
 
+        //hide modal
         closeUserModal(false);
     }
 
