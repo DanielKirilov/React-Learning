@@ -20,10 +20,23 @@ export default function UserListTable() {
         setShowCreate(false);
     }
 
+    const userCreateHandler = (e) => {
+        e.preventDefault();
+        closeUserModal(false);
+
+        const formData = new FormData(e.target);
+        const data = Object.entries(formData);
+        
+    }
+
     return (
         <div className="table-wrapper">
 
-            {showCreate && <CreateUserModal closeUserModal={closeUserModal} />}
+            {showCreate && <CreateUserModal
+                closeUserModal={closeUserModal}
+                userCreateHandler={userCreateHandler}
+            />
+            }
 
             <table className="table">
                 <thead>

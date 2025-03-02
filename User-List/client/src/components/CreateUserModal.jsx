@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-export default function CreateUserModal({ closeUserModal }) {
+export default function CreateUserModal({ closeUserModal, userCreateHandler }) {
     const modalRef = useRef(null);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function CreateUserModal({ closeUserModal }) {
                             </svg>
                         </button>
                     </header>
-                    <form>
+                    <form onSubmit={userCreateHandler}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
