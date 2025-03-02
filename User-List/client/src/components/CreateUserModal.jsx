@@ -1,7 +1,16 @@
+import { useRef, useEffect } from "react";
+
 export default function CreateUserModal({ closeUserModal }) {
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        modalRef.current?.focus(); // Auto-focus the modal when it opens
+    }, []);
+
     return (
-        <div className="overlay">
-            <div className="backdrop"></div>
+        <div ref={modalRef}
+            onKeyDown={(event) => event.key === "Escape" && closeUserModal()} tabIndex="0" className="overlay">
+            <div onClick={closeUserModal} className="backdrop"></div>
             <div className="modal">
                 <div className="user-container">
                     <header className="headers">
