@@ -1,6 +1,6 @@
 import { formatDateTime } from "../utils/dateUtils";
 
-export default function UserListItem({ _id, firstName, lastName, email, phoneNumber, createdAt, imageUrl }) {
+export default function UserListItem({ firstName, lastName, email, phoneNumber, createdAt, imageUrl }) {
     return (
         <tr>
             <td>
