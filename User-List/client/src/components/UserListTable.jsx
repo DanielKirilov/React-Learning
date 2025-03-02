@@ -10,7 +10,7 @@ export default function UserListTable() {
     useEffect(() => {
         userService.getAll()
             .then(result => setUsers(result));
-    }, [users])
+    }, [])
 
     const createUserClickHandler = () => {
         setShowCreate(true)
@@ -26,8 +26,10 @@ export default function UserListTable() {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
-        const result = await userService.create(data);
-        
+        const newUser = await userService.create(data);
+
+        setUsers(state => [...state, newUser])
+
         closeUserModal(false);
     }
 
