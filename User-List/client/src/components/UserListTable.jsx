@@ -1,11 +1,14 @@
 import UserListItem from "./UserListItem"
 import CreateUserModal from "./CreateUserModal";
+import UserInfoModal from "./UserInfoModal";
+
 import * as userService from "../services/userService";
 import { useEffect, useState } from "react";
 
 export default function UserListTable() {
     const [users, setUsers] = useState([]);
     const [showCreate, setShowCreate] = useState(false)
+    const [showInfo, setShowInfo] = useState(false)
 
     useEffect(() => {
         userService.getAll()
@@ -18,6 +21,14 @@ export default function UserListTable() {
 
     const closeUserModal = () => {
         setShowCreate(false);
+    }
+
+    // const showInfoModal = () => {
+    //     setShowInfo(false)
+    // }
+
+    const closeInfoModal = () => {
+        setShowInfo(false);
     }
 
     const userCreateHandler = async (e) => {
@@ -39,6 +50,10 @@ export default function UserListTable() {
         closeUserModal(false);
     }
 
+    const infoClickHandler = (userId) => {
+        console.log(userId);
+    }
+
     return (
         <div className="table-wrapper">
 
@@ -47,6 +62,8 @@ export default function UserListTable() {
                 userCreateHandler={userCreateHandler}
             />
             }
+
+            {showInfo && <UserInfoModal onClose={closeInfoModal} />}
 
             <table className="table">
                 <thead>
@@ -107,12 +124,14 @@ export default function UserListTable() {
                     {users.map(user => (
                         <UserListItem
                             key={user._id}
+                            userId={user._id}
                             firstName={user.firstName}
                             lastName={user.lastName}
                             email={user.email}
                             phoneNumber={user.phoneNumber}
                             createdAt={user.createdAt}
                             imageUrl={user.imageUrl}
+                            onInfoCLick={infoClickHandler}
                         />
                     ))}
 
