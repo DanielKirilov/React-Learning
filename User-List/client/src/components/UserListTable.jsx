@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 
 export default function UserListTable() {
     const [users, setUsers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null);
+
     const [showCreate, setShowCreate] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
 
@@ -22,10 +24,6 @@ export default function UserListTable() {
     const closeUserModal = () => {
         setShowCreate(false);
     }
-
-    // const showInfoModal = () => {
-    //     setShowInfo(false)
-    // }
 
     const closeInfoModal = () => {
         setShowInfo(false);
@@ -50,8 +48,9 @@ export default function UserListTable() {
         closeUserModal(false);
     }
 
-    const infoClickHandler = (userId) => {
-        console.log(userId);
+    const infoClickHandler = async (userId) => {
+        setSelectedUser(userId)
+        setShowInfo(true);
     }
 
     return (
@@ -63,7 +62,10 @@ export default function UserListTable() {
             />
             }
 
-            {showInfo && <UserInfoModal onClose={closeInfoModal} />}
+            {showInfo && <UserInfoModal
+                onClose={closeInfoModal}
+                userId={selectedUser}
+            />}
 
             <table className="table">
                 <thead>
