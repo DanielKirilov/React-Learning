@@ -5,19 +5,24 @@ import DeleteUserModal from "./DeleteUserModal";
 
 import * as userService from "../services/userService";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function UserListTable() {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
 
-    const [showCreate, setShowCreate] = useState(false)
-    const [showInfo, setShowInfo] = useState(false)
+    const [showCreate, setShowCreate] = useState(false);
+    const [showInfo, setShowInfo] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
 
-    const [showDelete, setShowDelete] = useState(false)
-
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
+        setIsLoading(true)
         userService.getAll()
-            .then(result => setUsers(result));
+            .then(result => setUsers(result))
+            .catch(err => console.log("err"))
+            .finally(() => setIsLoading(false));
+
     }, [])
 
     const createUserClickHandler = () => {
@@ -99,6 +104,8 @@ export default function UserListTable() {
                 onClose={closeDeleteModal}
                 onDelete={deleteUserHandler}
             />}
+
+            {isLoading && <LoadingSpinner />}
 
             <table className="table">
                 <thead>
