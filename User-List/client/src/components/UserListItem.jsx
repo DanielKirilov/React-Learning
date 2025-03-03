@@ -1,8 +1,12 @@
 import { formatDateTime } from "../utils/dateUtils";
 
-export default function UserListItem({ userId, firstName, lastName, email, phoneNumber, createdAt, imageUrl, onInfoCLick }) {
+export default function UserListItem({ userId, firstName, lastName, email, phoneNumber, createdAt, imageUrl, onInfoCLick, onDeleteClick }) {
     const infoClickHandler = () => {
         onInfoCLick(userId)
+    }
+
+    const deleteClickHandler = () => {
+        onDeleteClick(userId)
     }
 
     return (
@@ -27,7 +31,7 @@ export default function UserListItem({ userId, firstName, lastName, email, phone
                         </path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                <button onClick={deleteClickHandler} className="btn delete-btn" title="Delete">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"

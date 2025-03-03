@@ -1,6 +1,7 @@
 import UserListItem from "./UserListItem"
 import CreateUserModal from "./CreateUserModal";
 import UserInfoModal from "./UserInfoModal";
+import DeleteUserModal from "./DeleteUserModal";
 
 import * as userService from "../services/userService";
 import { useEffect, useState } from "react";
@@ -11,6 +12,8 @@ export default function UserListTable() {
 
     const [showCreate, setShowCreate] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
+
+    const [showDelete, setShowDelete] = useState(false)
 
     useEffect(() => {
         userService.getAll()
@@ -27,6 +30,10 @@ export default function UserListTable() {
 
     const closeInfoModal = () => {
         setShowInfo(false);
+    }
+
+    const closeDeleteModal = () => {
+        setShowDelete(false);
     }
 
     const userCreateHandler = async (e) => {
@@ -53,6 +60,27 @@ export default function UserListTable() {
         setShowInfo(true);
     }
 
+    const deleteUserHandler = async () => {
+        //remove user from server
+        await userService.remove(selectedUser);
+
+        //remvoe user from state
+        setUsers(state => state.filter(user => user._id !== selectedUser));
+
+
+        //close the delete modal
+        setShowDelete(false);
+    }
+
+    const deleteUserClickHandler = async (userId) => {
+        setShowDelete(true);
+
+        setUsers(state => [...state])
+
+        setSelectedUser(userId);
+    }
+
+
     return (
         <div className="table-wrapper">
 
@@ -65,6 +93,11 @@ export default function UserListTable() {
             {showInfo && <UserInfoModal
                 onClose={closeInfoModal}
                 userId={selectedUser}
+            />}
+
+            {showDelete && <DeleteUserModal
+                onClose={closeDeleteModal}
+                onDelete={deleteUserHandler}
             />}
 
             <table className="table">
@@ -134,6 +167,7 @@ export default function UserListTable() {
                             createdAt={user.createdAt}
                             imageUrl={user.imageUrl}
                             onInfoCLick={infoClickHandler}
+                            onDeleteClick={deleteUserClickHandler}
                         />
                     ))}
 
