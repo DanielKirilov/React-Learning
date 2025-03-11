@@ -1,12 +1,33 @@
 import { Fragment } from "react"
 
 export default function UncontrolledForm() {
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+
+        console.log(formData.get("username"));
+        console.log(formData.get("password"));
+        
+    }
     return (
-        <Fragment>
+        <>
             <h1>Uncontrolled Form</h1>
 
-            <form></form>
-        </Fragment >
+            <form onSubmit={submitHandler}>
+                <div>
+                    <label htmlFor="username">Username  </label>
+                    <input type="text" name="username" id="username" />
+                </div>
+                <div>
+                    <label htmlFor="username">Password  </label>
+                    <input type="password" name="password" id="password" />
+                </div>
+                <div>
+                    <input type="submit" value="Register" />
+                </div>
+            </form>
+        </>
     )
 
 }
