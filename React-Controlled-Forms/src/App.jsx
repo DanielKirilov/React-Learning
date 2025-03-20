@@ -22,6 +22,7 @@ function App() {
           <label
             htmlFor="username">Username </label>
           <input
+            placeholder='Dani'
             onChange={usernameChangeHandler}
             type="text"
             name="username"
@@ -32,6 +33,7 @@ function App() {
         <div>
           <label htmlFor="username">Password  </label>
           <input
+            placeholder='secret'
             onChange={passwordChangeHandler}
             type="password"
             name="password"
