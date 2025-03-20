@@ -6,12 +6,10 @@ function App() {
   let [password, setPassword] = useState("")
 
   const usernameChangeHandler = (e) => {
-    console.log(e.currentTarget.value);
     setUsername(e.currentTarget.value)
   }
 
   const passwordChangeHandler = (e) => {
-    console.log(e.currentTarget.value);
     setPassword(e.currentTarget.value)
   }
 
@@ -27,7 +25,9 @@ function App() {
             onChange={usernameChangeHandler}
             type="text"
             name="username"
-            id="username" />
+            id="username"
+            value={username}
+          />
         </div>
         <div>
           <label htmlFor="username">Password  </label>
@@ -35,7 +35,9 @@ function App() {
             onChange={passwordChangeHandler}
             type="password"
             name="password"
-            id="password" />
+            id="password"
+            value={password}
+          />
         </div>
         <div>
           <input type="submit" value="Register" />
